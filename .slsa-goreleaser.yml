@@ -18,7 +18,7 @@ goos: linux
 goarch: amd64
 
 # (Optional) Entrypoint to compile.
-# main: main.go
+main: main.go
 
 # Binary output name.
 # {{ .Os }} will be replaced by goos field in the config file.

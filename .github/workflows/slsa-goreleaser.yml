@@ -50,3 +50,9 @@ jobs:
           registry: ${{ secrets.DOCKER_REGISTRY_URL }}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+      - name: show files
+        run: ls -R
