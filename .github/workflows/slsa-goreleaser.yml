@@ -57,4 +57,4 @@ jobs:
       - name: Install Notation
         uses: Duffney/setup-notation@v1.0.0
         with:
-          version: v1.0.0-rc.3
+          version: 1.0.0-rc.3
