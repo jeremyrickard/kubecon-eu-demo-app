@@ -96,6 +96,8 @@ jobs:
           notation sign --key jeremyrickard-github-io ${TAGS}
         env:
           TAGS: ${{ steps.meta.outputs.tags }}
+          NOTATION_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          NOTATION_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       - name: Install ORAS
         run: |
           VERSION="1.0.0"
