@@ -92,7 +92,8 @@ jobs:
           TAGS: ${{ steps.meta.outputs.tags }}
       - name: Sign With Notation
         run: |
-          notation --key jeremyrickard-github-io ${TAGS}
+          notation key list
+          notation sign --key jeremyrickard-github-io ${TAGS}
         env:
           TAGS: ${{ steps.meta.outputs.tags }}
 
