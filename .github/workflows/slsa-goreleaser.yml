@@ -116,11 +116,9 @@ jobs:
       - name: Generate Project SBOM
         run: |
           bom generate --format json -o bom.json .
-        working-directory: $GITHUB_WORKSPACE
       - name: ORAS attach the SBOM
         run: |
           oras attach --artifact-type application/spdx+json ${TAGS} bom.json
         env:
           TAGS: ${{ steps.meta.outputs.tags }}
-        working-directory: $GITHUB_WORKSPACE
 
