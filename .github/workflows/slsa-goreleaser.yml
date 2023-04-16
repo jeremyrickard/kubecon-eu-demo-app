@@ -115,7 +115,9 @@ jobs:
           go install sigs.k8s.io/bom/cmd/bom@latest
       - name: Generate Project SBOM
         run: |
-          bom generate --format json -o bom.json $GITHUB_WORKSPACE
+          bom generate --format json -o bom.json ${SOURCE_DIR}
+        env:
+          SOURCE_DIR: $GITHUB_WORKSPACE
       - name: ORAS attach the SBOM
         run: |
           oras attach --artifact-type application/spdx+json ${TAGS} bom.json
