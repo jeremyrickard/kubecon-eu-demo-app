@@ -49,7 +49,7 @@ jobs:
       - uses: Azure/login@v1
         with:
           creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
-      - name: Login to Docker Hub
+      - name: Login to Registry
         uses: docker/login-action@v2
         with:
           registry: ${{ secrets.DOCKER_REGISTRY_URL }}
@@ -85,9 +85,14 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      - name: Sign image with a key
+      - name: Sign image with a OIDC Token
         run: |
           cosign sign --yes ${TAGS}
+        env:
+          TAGS: ${{ steps.meta.outputs.tags }}
+      - name: Sign With Notation
+        run: |
+          notation --key jeremyrickard-github-io ${TAGS}
         env:
           TAGS: ${{ steps.meta.outputs.tags }}
 
